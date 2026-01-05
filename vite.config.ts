@@ -6,9 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   
   return {
-    // Esta linha abaixo resolve o problema da tela branca no GitHub Pages
-    base: '/labip/', 
-    
+    // Removida a linha 'base' para funcionar corretamente na raiz da Vercel
     server: {
       port: 3000,
       host: '0.0.0.0',
