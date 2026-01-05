@@ -15,13 +15,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
 // Configura persistência local para evitar re-login constante
 setPersistence(auth, browserLocalPersistence).catch((error) => {
   console.error("Erro ao configurar persistência:", error);
 });
 
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+export { app, auth, db, storage };
 export default app;
