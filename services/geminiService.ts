@@ -2,7 +2,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-export const generateResponse = async (prompt: string) => {
+// Esta é a função que o seu componente de Chat está procurando
+export const getAssistantResponseStream = async (prompt: string) => {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const result = await model.generateContent(prompt);
