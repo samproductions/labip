@@ -1,0 +1,8 @@
+{
+  "name": "LAPIB Connect - Portal de Biomedicina",
+  "description": "Plataforma da Liga Acadêmica de Pesquisa e Inovação Biomédica para gestão de atividades, eventos e integração acadêmica.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
