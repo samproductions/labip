@@ -1,25 +1,29 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+
+import { initializeApp } from "firebase/app";
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// Substitua pelos dados do seu projeto no console do Firebase
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "seu-projeto.firebaseapp.com",
-  projectId: "seu-projeto",
-  storageBucket: "seu-projeto.appspot.com",
-  messagingSenderId: "seu-id",
-  appId: "seu-app-id"
+  apiKey: "AIzaSyCuddroiZ97V1oH_eLADjioNAGEqlaeISE",
+  authDomain: "lapib-connect.firebaseapp.com",
+  projectId: "lapib-connect",
+  storageBucket: "lapib-connect.firebasestorage.app",
+  messagingSenderId: "251711838902",
+  appId: "1:251711838902:web:659015bef1226e80fa2417",
+  measurementId: "G-WHLJX0ZCR9"
 };
 
-// Inicializa o Firebase apenas se ainda não houver um app rodando
-// Isso resolve o erro "Component auth has not been registered"
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-// Exportações que o seu código está pedindo nos logs de erro
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+// Configura persistência local para evitar re-login constante
+setPersistence(auth, browserLocalPersistence).catch((error) => {
+  console.error("Erro ao configurar persistência:", error);
+});
 
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+export { app, auth, db, storage };
 export default app;
