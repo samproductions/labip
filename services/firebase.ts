@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+// Substitua pelos dados do seu projeto no console do Firebase
 const firebaseConfig = {
   apiKey: "SUA_API_KEY",
   authDomain: "seu-projeto.firebaseapp.com",
@@ -13,9 +14,10 @@ const firebaseConfig = {
 };
 
 // Inicializa o Firebase apenas se ainda não houver um app rodando
+// Isso resolve o erro "Component auth has not been registered"
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
-// Exportações essenciais que seu código está pedindo
+// Exportações que o seu código está pedindo nos logs de erro
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
