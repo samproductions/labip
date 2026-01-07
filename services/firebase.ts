@@ -1,6 +1,7 @@
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "SUA_API_KEY",
@@ -11,9 +12,12 @@ const firebaseConfig = {
   appId: "seu-app-id"
 };
 
-// Esta parte evita o erro de "Component not registered"
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Inicializa o Firebase apenas se ainda não houver um app rodando
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
+// Exportações essenciais que seu código está pedindo
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
+
 export default app;
